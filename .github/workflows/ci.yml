@@ -34,5 +34,6 @@ jobs:
         run: |
           yarn global add truffle@5.1.51
           export PATH="$(yarn global bin):$PATH"
+          truffle version
       - name: Test Solidity code
         run: truffle test
