@@ -8,11 +8,18 @@
   },
   "scripts": {
     "dev": "lite-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:solidity": "npx solhint contracts/**/*.sol",
+    "format:solidity": "npx prettier --write 'contracts/**/*.sol'",
+    "check:format:solidity": "npx prettier --list-different 'contracts/**/*.sol'"
   },
   "author": "ChainSkills",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.3.0"
+    "lite-server": "^2.3.0",
+    "prettier": "^2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.1",
+    "solhint": "^3.3.2",
+    "solhint-plugin-prettier": "^0.0.5"
   }
 }

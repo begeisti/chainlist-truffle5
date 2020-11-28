@@ -1,28 +1,25 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master, develop ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # For testing the Solidity code
-  test-solidity:
-    # The type of runner that the job will run on
+  # Since GitHub Actions does not support caching between jobs properly, all CI steps are put into one job.
+  # TODO:: Check caching later!
+  verify-solidity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      # Runs a single command using the runners shell
+        with:
+          node-version: '14'
+      - name: Install project dependencies
+        run: yarn --frozen-lockfile
+      - name: Checking the format of Solidity files
+        run: yarn check:format:solidity
+      - name: Lint check of Solidity files
+        run: yarn lint:solidity
       - name: Install truffle v5.1.51
         run: npm install --unsafe-perm -g truffle@5.1.51
       - name: Test Solidity code

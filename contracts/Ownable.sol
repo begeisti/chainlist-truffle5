@@ -1,16 +1,16 @@
-pragma solidity >0.4.99 <0.6.0;
+pragma solidity ^0.5.16;
 
 contract Ownable {
-	// state variable
-	address payable owner;
+    // state variable
+    address payable public owner;
 
-	// modifiers
-	modifier onlyOwner() {
-		require(msg.sender == owner, "This function can only be called by the contract owner!");
-		_; // rest of the calling function
-	}
+    // modifiers
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only contract owner!");
+        _; // rest of the calling function
+    }
 
-	constructor() public {
-		owner = msg.sender;
-	}
+    constructor() public {
+        owner = msg.sender;
+    }
 }
