@@ -26,6 +26,6 @@ jobs:
       - name: Install project dependencies
         run: yarn
       - name: Attach truffle console
-        run: truffle develop --network docker_ganache
+        run: truffle console --network docker_ganache
       - name: Test Solidity code
         run: truffle test --network docker_ganache
