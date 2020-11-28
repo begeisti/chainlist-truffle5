@@ -21,8 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
       # Runs a single command using the runners shell
       - name: Install truffle v5.1.51
         run: npm install --unsafe-perm -g truffle@5.1.51
-      - name: Test Smart Contracts
+      - name: Test Solidity code
         run: truffle test
