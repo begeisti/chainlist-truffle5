@@ -25,5 +25,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install project dependencies
         run: yarn
+      - name: Attach truffle console
+        run: truffle develop --network docker_ganache
       - name: Test Solidity code
         run: truffle test --network docker_ganache
