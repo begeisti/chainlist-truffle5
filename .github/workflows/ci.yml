@@ -19,11 +19,10 @@ jobs:
   test-solidity:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    container: begeisti/ganache-truffle5
     steps:
       - uses: actions/checkout@v2
       # Runs a single command using the runners shell
-      - name: Test Solidity code
+      - name: Install truffle v5.1.51
+        run: npm install --unsafe-perm -g truffle@5.1.51
+      - name: Test Smart Contracts
         run: truffle test
-      - name: Start Truffle develop
-        run: truffle develop
