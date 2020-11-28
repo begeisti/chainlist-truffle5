@@ -14,6 +14,16 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Install project dependencies
         run: yarn --frozen-lockfile
       - name: Checking the format of Solidity files
@@ -21,6 +31,6 @@ jobs:
       - name: Lint check of Solidity files
         run: yarn lint:solidity
       - name: Install truffle v5.1.51
-        run: npm install --unsafe-perm -g truffle@5.1.51
+        run: yarn global add truffle@5.1.51
       - name: Test Solidity code
         run: truffle test
