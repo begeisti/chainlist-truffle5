@@ -97,7 +97,7 @@ contract ChainList is Ownable {
         require(articleCounter > 0, "No article for sale!");
 
         // check that the article exists
-        require(_id > 0 && _id <= articleCounter, "No article with thid id!");
+        require(_id > 0 && _id <= articleCounter, "No article with this id!");
 
         // retrieve the article from the mapping
         Article storage article = articles[_id];

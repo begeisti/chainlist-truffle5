@@ -24,7 +24,7 @@ contract("ChainList", accounts => {
 			});
 			assert.fail();
 		} catch(error) {
-			assert.equal(error.reason, "There should be at least one article!");
+			assert.equal(error.reason, "No article for sale!");
 		}
 		const numberOfArticles = await chainListInstance.getNumberOfArticles();
 		assert.equal(numberOfArticles.toNumber(), 0, "Number of articles must be 0!");
@@ -44,7 +44,7 @@ contract("ChainList", accounts => {
 			});
 			assert.fail();
 		} catch (error) {
-			assert.equal(error.reason, "Article with this id does not exist!");
+			assert.equal(error.reason, "No article with this id!");
 		}
 		const article = await chainListInstance.articles(1);
 		assert.equal(article[0].toNumber(), 1, "Article ID must be 1");
@@ -63,7 +63,7 @@ contract("ChainList", accounts => {
 			});
 			assert.fail();
 		} catch(error) {
-			assert.equal(error.reason, "Seller cannot buy his own article!");
+			assert.equal(error.reason, "Seller cannot buy his article!");
 		}
 		const article = await chainListInstance.articles(1);
 		assert.equal(article[0].toNumber(), 1, "Article ID must be 1");
@@ -81,7 +81,7 @@ contract("ChainList", accounts => {
 			});
 			assert.fail();
 		} catch(error) {
-			assert.equal(error.reason, "Value provided does not match the price of the articel!");
+			assert.equal(error.reason, "Provided price does not match!");
 		}
 		const article = await chainListInstance.articles(1);
 		assert.equal(article[0].toNumber(), 1, "Article ID must be 1");
