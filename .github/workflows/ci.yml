@@ -23,5 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Runs a single command using the runners shell
+      - name: Install project dependencies
+        run: yarn
       - name: Test Solidity code
         run: truffle test --network docker_ganache
