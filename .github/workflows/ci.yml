@@ -30,9 +30,5 @@ jobs:
         run: yarn check:format:solidity
       - name: Lint check of Solidity files
         run: yarn lint:solidity
-      - name: Install truffle v5.1.51
-        run: yarn global add truffle@5.1.51
       - name: Test Solidity code
-        run: |
-          export PATH="$(yarn global bin):$PATH"
-          truffle test
+        run: yarn test:solidity
